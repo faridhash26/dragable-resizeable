@@ -8,7 +8,12 @@ function App() {
   const dragItem = useRef();
   const dragOverItem = useRef();
 
-  const [list, setList] = useState(["Item 1", "Item 2"]);
+  const [list, setList] = useState([
+    { label: "Item 1", x: 200, y: 200 },
+    { label: "Item 2", x: 200, y: 200 },
+    { label: "Item 3", x: 200, y: 200 },
+    { label: "Item 4", x: 200, y: 200 },
+  ]);
 
   const dragStart = (e, position) => {
     dragItem.current = position;
@@ -27,6 +32,12 @@ function App() {
     dragOverItem.current = null;
     setList(copyListItems);
   };
+  const handleChangesize = (newdata, index) => {
+    const newepak = [...list];
+    newepak[index].x = newdata.w;
+    newepak[index].y = newdata.h;
+    setList(newepak);
+  };
   return (
     <div className="App" style={{ display: "flex", flexWrap: "wrap" }}>
       {list &&
@@ -38,6 +49,9 @@ function App() {
             onDragEnd={drop}
             title={item}
             index={index}
+            setDims={(sdpikfnswpdfgvn) =>
+              handleChangesize(sdpikfnswpdfgvn, index)
+            }
           />
         ))}
     </div>

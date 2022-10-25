@@ -7,14 +7,14 @@ const Card = (props) => {
     y: "",
   });
 
-  const [dims, setDims] = useState({
-    w: 200,
-    h: 200,
-  });
+  // const [dims, setDims] = useState({
+  //   w: 200,
+  //   h: 200,
+  // });
 
   const boxStyle = {
-    width: `${dims.w}px`,
-    height: `${dims.h}px`,
+    width: `${props.title.x}px`,
+    height: `${props.title.y}px`,
   };
 
   const startResize = (e) => {
@@ -30,11 +30,13 @@ const Card = (props) => {
     if (active) {
       const xDiff = Math.abs(x - e.clientX);
       const yDiff = Math.abs(y - e.clientY);
-      const newW = x > e.clientX ? dims.w - xDiff : dims.w + xDiff;
-      const newH = y > e.clientY ? dims.h + yDiff : dims.h - yDiff;
+      const newW =
+        x > e.clientX ? props.title.x - xDiff : props.title.x + xDiff;
+      const newH =
+        y > e.clientY ? props.title.y + yDiff : props.title.y - yDiff;
 
       setDrag({ ...drag, x: e.clientX, y: e.clientY });
-      setDims({ w: newW, h: newH });
+      props.setDims({ w: newW, h: newH });
     }
   };
 
@@ -60,7 +62,7 @@ const Card = (props) => {
     >
       <div className="box" style={boxStyle}>
         <button className="dragger" onMouseDown={startResize}>
-          {props.title}
+          {props.title.label}
         </button>
       </div>
     </div>
