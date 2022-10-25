@@ -28,7 +28,7 @@ function App() {
     setList(copyListItems);
   };
   return (
-    <div className="App" style={{ display: "flex" }}>
+    <div className="App" style={{ display: "flex", flexWrap: "wrap" }}>
       {list &&
         list.map((item, index) => (
           <Card

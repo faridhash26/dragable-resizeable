@@ -46,7 +46,7 @@ const Card = (props) => {
     <div
       style={{
         backgroundColor: "lightblue",
-        margin: "20px 25%",
+        margin: "20px ",
         textAlign: "center",
         fontSize: "40px",
       }}
